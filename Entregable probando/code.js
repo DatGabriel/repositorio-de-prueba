@@ -5,7 +5,6 @@ let datosPersona = {
   ciudad: "",
   interesPorJs: "",
 };
-console.log(datosPersona);
 
 const listado = [{
     imgUrl: "https://huguidugui.files.wordpress.com/2015/03/html1.png",
@@ -82,26 +81,53 @@ function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-  
+  let spanNombre = document.querySelector("#nombre");
+  spanNombre.innerText = datosPersona.nombre;
 
+  let spanEdad = document.querySelector("#edad");
+  spanEdad.innerText = datosPersona.edad;
+
+  let spanCiudad = document.querySelector("#ciudad");
+  spanCiudad.innerText = datosPersona.ciudad;
+
+  let spanJavascript = document.querySelector("#javascript");
+  spanJavascript.innerText = datosPersona.interesPorJs;
 
 }
+
 
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
   
+  const fila = document.querySelector("#fila");
+  fila.innerHTML = "";
+
+  listado.forEach(materia => {
+    fila.innerHTML += `
+    <div class="caja">
+    <img src="${materia.imgUrl}" alt="${materia.lenguajes}">
+    <p class="lenguajes">${materia.lenguajes}</p>
+    <p class="bimestre">${materia.bimestre}</p>
+    </div>
+    `
+  });
 
 
 }
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
-  
-
-
+  let sitioTema = document.querySelector("#sitio");
+  sitioTema.classList.toggle("dark");
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 
+window.addEventListener("keydown", (event) =>{
+  console.log(event);
+  let sobreMiEvento = document.querySelector("#sobre-mi");
+  if (event.key === "f") {
+    sobreMiEvento.classList.remove("oculto");
+  }
+})
